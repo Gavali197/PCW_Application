@@ -6,6 +6,7 @@ require("dotenv").config();
 // 1. Import your routes
 const userRoutes = require("./routes/userRoutes"); 
 const profileRoute = require("./routes/profileRoute");
+const JobDrive = require("./routes/JobDriveRoute")
 
 const app = express();
 const PORT = process.env.PORT || 3030;
@@ -24,6 +25,7 @@ app.use(Session({
 // 3. Mount Routes
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/profiles", profileRoute);
+app.use("/api/v1/jobs", JobDrive);
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
