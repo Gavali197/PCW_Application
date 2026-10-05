@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { upsertProfile, getMyProfile, verifyProfile } = require('../controllers/profileController');
+const { upsertProfile, getMyProfile, verifyProfile } = require('../controllers/StudentProfileController');
 const { protect, authorizeRoles } = require('../Middleware/authMiddleware');
 
 // Student Routes

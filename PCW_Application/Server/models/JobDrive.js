@@ -1,3 +1,4 @@
+const mongoose = require("mongoose")
 const jobDriveSchema = new mongoose.Schema({
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   companyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true },
@@ -20,3 +21,5 @@ const jobDriveSchema = new mongoose.Schema({
     venueOrLink: { type: String, required: true }
   }]
 }, { timestamps: true });
+
+module.exports = mongoose.model("JobDrive", jobDriveSchema)

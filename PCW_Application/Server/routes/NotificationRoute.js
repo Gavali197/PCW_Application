@@ -5,7 +5,7 @@ const {
   markAsRead, 
   markAllAsRead, 
   sendNotification 
-} = require('../controllers/notificationController');
+} = require('../controllers/NoticationController');
 const { protect, authorizeRoles } = require('../Middleware/authMiddleware');
 
 // Routes for the currently logged-in user (Student, Committee, or Admin)

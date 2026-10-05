@@ -4,7 +4,7 @@ const Session = require("express-session");
 require("dotenv").config();
 
 // 1. Import your routes
-const userRoutes = require("./routes/userRoutes"); 
+const userRoutes = require("./routes/UserRoute"); 
 const profileRoute = require("./routes/profileRoute");
 const JobDrive = require("./routes/JobDriveRoute")
 const Company = require("./routes/CompanyRoute")

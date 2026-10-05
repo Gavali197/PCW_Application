@@ -1,4 +1,4 @@
-const Application = require('../models/Application');
+const Application = require("../models/Application")
 const JobDrive = require('../models/JobDrive');
 const StudentProfile = require('../models/StudentProfile');
 const AuditLog = require('../models/AuditLog');
