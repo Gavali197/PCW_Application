@@ -7,6 +7,8 @@ require("dotenv").config();
 const userRoutes = require("./routes/userRoutes"); 
 const profileRoute = require("./routes/profileRoute");
 const JobDrive = require("./routes/JobDriveRoute")
+const Company = require("./routes/CompanyRoute")
+const auditLogRoutes = require("./routes/AuditLogRoute")
 
 const app = express();
 const PORT = process.env.PORT || 3030;
@@ -26,6 +28,8 @@ app.use(Session({
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/profiles", profileRoute);
 app.use("/api/v1/jobs", JobDrive);
+app.use("/api/v1/companies", Company);
+app.use("/api/v1/audit-logs", auditLogRoutes);
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
