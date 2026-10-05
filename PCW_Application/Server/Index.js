@@ -9,6 +9,8 @@ const profileRoute = require("./routes/profileRoute");
 const JobDrive = require("./routes/JobDriveRoute")
 const Company = require("./routes/CompanyRoute")
 const auditLogRoutes = require("./routes/AuditLogRoute")
+const applicationRoutes = require("./routes/ApplicationRoute")
+const notification = require("./routes/NotificationRoute")
 
 const app = express();
 const PORT = process.env.PORT || 3030;
@@ -30,6 +32,8 @@ app.use("/api/v1/profiles", profileRoute);
 app.use("/api/v1/jobs", JobDrive);
 app.use("/api/v1/companies", Company);
 app.use("/api/v1/audit-logs", auditLogRoutes);
+app.use("/api/v1/applications", applicationRoutes);
+app.use("/api/v1/notifications", notification)
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
