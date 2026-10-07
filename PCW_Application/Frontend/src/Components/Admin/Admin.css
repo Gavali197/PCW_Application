@@ -1,0 +1,79 @@
+/* Sidebar adjustments */
+.admin-sidebar { background-color: #0f172a; }
+.admin-badge { background-color: #8b5cf6; }
+
+/* Grid for the Committee Page */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.helper-text {
+  color: #64748b;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* Alerts */
+.alert {
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.alert.success { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.alert.error { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* Data Tables for Logs */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.log-action {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.badge-outline {
+  border: 1px solid #cbd5e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.btn-secondary {
+  background-color: white;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #475569;
+}
+.btn-secondary:hover { background-color: #f1f5f9; }
