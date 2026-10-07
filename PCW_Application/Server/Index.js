@@ -1,21 +1,40 @@
 const express = require("express");
 const dbConnect = require("./utils/Db");
+const Session = require("express-session");
+require("dotenv").config();
+
+// 1. Import your routes
+const userRoutes = require("./routes/UserRoute"); 
+const profileRoute = require("./routes/profileRoute");
+const JobDrive = require("./routes/JobDriveRoute")
+const Company = require("./routes/CompanyRoute")
+const auditLogRoutes = require("./routes/AuditLogRoute")
+const applicationRoutes = require("./routes/ApplicationRoute")
+const notification = require("./routes/NotificationRoute")
+
 const app = express();
-require("dotenv").config()
-const PORT = 3030
-const Session = require("express-session")
+const PORT = process.env.PORT || 3030;
 
 dbConnect();
 
-// app.use("/api/v1", router)
-app.use(express.json())
+// 2. Global Middleware
+app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(Session({
-    secret : "GameOfThrons",
+    secret : process.env.SESSION_SECRET || "GameOfThrons",
     resave: false,
     saveUninitialized : true
-}))
+}));
+
+// 3. Mount Routes
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/profiles", profileRoute);
+app.use("/api/v1/jobs", JobDrive);
+app.use("/api/v1/companies", Company);
+app.use("/api/v1/audit-logs", auditLogRoutes);
+app.use("/api/v1/applications", applicationRoutes);
+app.use("/api/v1/notifications", notification)
 
 app.listen(PORT, ()=>{
-    console.log(`server running on ${PORT}`);
-})
+    console.log(`Server running on port ${PORT}`);
+});
