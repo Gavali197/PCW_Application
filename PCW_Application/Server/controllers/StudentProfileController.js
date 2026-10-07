@@ -1,6 +1,6 @@
 const StudentProfile = require('../models/StudentProfile');
 const AuditLog = require('../models/AuditLog');
-
+const User = require('../models/User'); // Add this line
 
 const upsertProfile = async (req, res) => {
   try {
@@ -97,8 +97,21 @@ const verifyProfile = async (req, res) => {
   }
 };
 
+const getAllProfiles = async (req, res) => {
+  try {
+    const profiles = await StudentProfile.find()
+      .populate('userId', 'email')
+      .sort({ createdAt: -1 });
+    res.json(profiles);
+  } catch (error) {
+    console.log("BACKEND CRASH REASON:", error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
 module.exports = {
   upsertProfile,
   getMyProfile,
-  verifyProfile
+  verifyProfile,
+  getAllProfiles
 };

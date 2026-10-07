@@ -63,7 +63,7 @@ const getMyApplications = async (req, res) => {
     const applications = await Application.find({ profileId: profile._id })
       .populate({
         path: 'driveId',
-        select: 'jobRole companyId deadline',
+        select: 'jobRole companyId deadline ctc',
         populate: { path: 'companyId', select: 'companyName' }
       })
       .sort({ appliedOn: -1 });
