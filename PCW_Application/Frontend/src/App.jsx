@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import RoleRoute from './components/RoleRoute';
+import Register from './pages/Register';
 
 // 1. Import your actual dashboard components
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} /> {/* NEW */}
           <Route path="/" element={<Navigate to="/login" replace />} />
 
           {/* ----------------- TIER 3: STUDENT ROUTES ----------------- */}

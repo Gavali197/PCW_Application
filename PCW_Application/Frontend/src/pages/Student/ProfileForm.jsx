@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-// import api from '../../api/axios';
 import api from '../../API/axios';
-
 
 const ProfileForm = ({ initialData, onSuccess, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -31,7 +29,7 @@ const ProfileForm = ({ initialData, onSuccess, onCancel }) => {
       };
       
       const res = await api.post('/profiles', payload);
-      onSuccess(res.data); // Pass the updated data back to the parent
+      onSuccess(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to save profile details.');
     } finally {
@@ -45,7 +43,7 @@ const ProfileForm = ({ initialData, onSuccess, onCancel }) => {
       
       {initialData && (
         <div className="alert pending" style={{ backgroundColor: '#fef9c3', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
-          <strong>Note:</strong> Updating your CGPA or Backlogs will reset your Verification Status to 'Pending'.
+          <strong>Note:</strong> Updating your CGPA will reset Verification Status to 'Pending'.
         </div>
       )}
 
@@ -55,13 +53,13 @@ const ProfileForm = ({ initialData, onSuccess, onCancel }) => {
         <div className="form-group">
           <label>Enrollment Number</label>
           <input type="text" name="enrollmentNo" value={formData.enrollmentNo} onChange={handleChange} required disabled={!!initialData} />
-          {initialData && <small style={{ color: '#64748b' }}>Enrollment numbers cannot be changed once set.</small>}
         </div>
 
         <div className="form-group">
           <label>Branch / Degree</label>
           <select name="branch" value={formData.branch} onChange={handleChange} required style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>
             <option value="">Select Branch...</option>
+            <option value="BCA">BCA</option>
             <option value="BTech CS">BTech CS</option>
             <option value="BTech IT">BTech IT</option>
             <option value="MCA">MCA</option>

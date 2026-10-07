@@ -2,11 +2,13 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import VerifyStudents from './VerifyStudents';
 import CreateJobDrive from './CreateJobDrive';
+import ManageCompanies from './ManageCompanies';
+import ApplicantTracking from './ApplicantTracking'; // NEW IMPORT
 import '../student/Dashboard.css'; 
 
 const CommitteeDashboard = () => {
   const { user, logout } = useContext(AuthContext);
-  const [activeTab, setActiveTab] = useState('verify'); // 'verify', 'createJob'
+  const [activeTab, setActiveTab] = useState('tracking'); // Defaulting to the new tab
 
   return (
     <div className="dashboard-layout">
@@ -17,17 +19,17 @@ const CommitteeDashboard = () => {
         </div>
         
         <nav className="sidebar-nav">
-          <button 
-            className={activeTab === 'verify' ? 'active' : ''} 
-            onClick={() => setActiveTab('verify')}
-          >
-            Verify Students
+          <button className={activeTab === 'companies' ? 'active' : ''} onClick={() => setActiveTab('companies')}>
+            Company Directory
           </button>
-          <button 
-            className={activeTab === 'createJob' ? 'active' : ''} 
-            onClick={() => setActiveTab('createJob')}
-          >
+          <button className={activeTab === 'createJob' ? 'active' : ''} onClick={() => setActiveTab('createJob')}>
             Post Job Drive
+          </button>
+          <button className={activeTab === 'tracking' ? 'active' : ''} onClick={() => setActiveTab('tracking')}>
+            Applicant Tracking
+          </button>
+          <button className={activeTab === 'verify' ? 'active' : ''} onClick={() => setActiveTab('verify')}>
+            Verify Students
           </button>
         </nav>
 
@@ -40,14 +42,18 @@ const CommitteeDashboard = () => {
       <main className="main-content">
         <header className="content-header">
           <h1>
-            {activeTab === 'verify' && 'Student Profile Verification'}
+            {activeTab === 'companies' && 'Manage Recruiting Companies'}
             {activeTab === 'createJob' && 'Create New Job Drive'}
+            {activeTab === 'tracking' && 'Track Job Applications'}
+            {activeTab === 'verify' && 'Student Profile Verification'}
           </h1>
         </header>
         
         <div className="content-body">
-          {activeTab === 'verify' && <VerifyStudents />}
+          {activeTab === 'companies' && <ManageCompanies />}
           {activeTab === 'createJob' && <CreateJobDrive />}
+          {activeTab === 'tracking' && <ApplicantTracking />}
+          {activeTab === 'verify' && <VerifyStudents />}
         </div>
       </main>
     </div>
