@@ -2,8 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
-import ProtectedRoute from './Components/ProtectedRoute';
-import RoleRoute from './Components/RoleRoute';
+import ProtectedRoute from './components/ProtectedRoute';
+import RoleRoute from './components/RoleRoute';
+
+// 1. Import your actual dashboard components
+import AdminDashboard from './pages/admin/AdminDashboard';
+import CommitteeDashboard from './pages/committee/CommitteeDashboard';
+import StudentDashboard from './pages/Student/StudentDashboard';
 
 function App() {
   return (
@@ -12,8 +17,6 @@ function App() {
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
-          
-          {/* Default redirect based on auth status can go here later */}
           <Route path="/" element={<Navigate to="/login" replace />} />
 
           {/* ----------------- TIER 3: STUDENT ROUTES ----------------- */}
@@ -22,7 +25,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <RoleRoute allowedRoles={['Student']}>
-                  <div>Welcome to the Student Dashboard</div>
+                  <StudentDashboard /> {/* Replaced the <div> placeholder */}
                 </RoleRoute>
               </ProtectedRoute>
             } 
@@ -34,7 +37,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <RoleRoute allowedRoles={['Committee', 'SuperAdmin']}>
-                  <div>Welcome to the Committee Dashboard</div>
+                  <CommitteeDashboard /> {/* Replaced the <div> placeholder */}
                 </RoleRoute>
               </ProtectedRoute>
             } 
@@ -46,7 +49,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <RoleRoute allowedRoles={['SuperAdmin']}>
-                  <div>Welcome to the Super Admin (HOD) Dashboard</div>
+                  <AdminDashboard /> {/* Replaced the <div> placeholder */}
                 </RoleRoute>
               </ProtectedRoute>
             } 

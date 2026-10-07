@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import ManageCommittee from './ManageCommittee';
+import ManageCommittee from '../committee/ManageCommittee';
 import AuditLogs from './AuditLogs';
 import '../student/Dashboard.css'; // Reusing the layout CSS
 import './Admin.css'; // Specific styles for tables/forms
