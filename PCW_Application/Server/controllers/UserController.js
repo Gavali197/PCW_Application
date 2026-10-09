@@ -101,8 +101,47 @@ const createCommitteeMember = async (req, res) => {
   }
 };
 
+// @desc    Get all Committee Members
+// @route   GET /api/v1/users/committee
+// @access  Private (SuperAdmin Only)
+const getCommitteeMembers = async (req, res) => {
+  try {
+    const members = await User.find({ role: 'Committee' }).select('-passwordHash');
+    res.json(members);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+// @desc    Toggle User Active Status (Revoke/Restore Access)
+// @route   PATCH /api/v1/users/:id/status
+// @access  Private (SuperAdmin Only)
+const toggleUserStatus = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    
+    // Security check: Prevent the Admin from accidentally deactivating themselves
+    if (user.role === 'SuperAdmin') {
+      return res.status(403).json({ message: 'Cannot deactivate a SuperAdmin account' });
+    }
+
+    user.isActive = !user.isActive;
+    await user.save();
+
+    res.json({ 
+      message: `Account is now ${user.isActive ? 'Active' : 'Deactivated'}`, 
+      isActive: user.isActive 
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
 module.exports = {
   registerStudent,
   loginUser,
   createCommitteeMember,
+  getCommitteeMembers,
+  toggleUserStatus
 };

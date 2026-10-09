@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const studentProfileSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true, unique: true },
   enrollmentNo: { type: String, required: true, unique: true },
   branch: { type: String, required: true }, // e.g., "BTech CS", "MSc ICT"
   cgpa: { type: Number, required: true, min: 0, max: 10 },
