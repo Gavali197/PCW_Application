@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const jobDriveSchema = new mongoose.Schema({
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
   companyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true },
   jobRole: { type: String, required: true },
   ctc: { type: String },
