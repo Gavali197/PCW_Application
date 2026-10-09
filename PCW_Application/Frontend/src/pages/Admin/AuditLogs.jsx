@@ -11,7 +11,7 @@ const AuditLogs = () => {
     const fetchLogs = async () => {
       try {
         // Adjust this endpoint if your route is named differently (e.g., /analytics/logs)
-        const res = await api.get('/logs'); 
+        const res = await api.get('/auditLogs'); 
         setLogs(res.data);
       } catch (err) {
         console.error('Failed to fetch logs:', err);

@@ -45,7 +45,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/profiles", profileRoute);
 app.use("/api/v1/jobs", JobDrive);
 app.use("/api/v1/companies", Company);
-app.use("/api/v1/audit-logs", auditLogRoutes);
+app.use("/api/v1/auditLogs", auditLogRoutes);
 app.use("/api/v1/applications", applicationRoutes);
 app.use("/api/v1/notifications", notification);
 // Mount the route
