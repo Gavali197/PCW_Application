@@ -3,17 +3,17 @@ const Company = require('../models/Company');
 
 const createJobDrive = async (req, res) => {
   try {
-    const { companyId, jobRole, ctc, eligibility, deadline } = req.body;
-
- 
+    // ADDED: extracted 'description' from the request body
+    const { companyId, jobRole, ctc, eligibility, deadline, description } = req.body;
 
     const jobDrive = await JobDrive.create({
-      createdBy: req.user._id,
+      createdBy: req.user._id, // This links the committee member
       companyId,
       jobRole,
       ctc,
       eligibility,
-      deadline
+      deadline,
+      description // ADDED: save the description to the database
     });
 
     res.status(201).json(jobDrive);
@@ -26,6 +26,8 @@ const getAllJobDrives = async (req, res) => {
   try {
     const drives = await JobDrive.find()
       .populate('companyId', 'companyName')
+      // ADDED: Populate the committee member's details so the student can see who posted it
+      .populate('createdBy', 'fullName email phone') 
       .sort({ createdAt: -1 }); // Newest first
 
     res.json(drives);
@@ -37,7 +39,9 @@ const getAllJobDrives = async (req, res) => {
 const getJobDriveById = async (req, res) => {
   try {
     const drive = await JobDrive.findById(req.params.id)
-      .populate('companyId', 'companyName hrContactName');
+      .populate('companyId', 'companyName hrContactName')
+      // ADDED: Populate here as well for consistency
+      .populate('createdBy', 'fullName email phone');
 
     if (!drive) {
       return res.status(404).json({ message: 'Job Drive not found' });
@@ -48,7 +52,6 @@ const getJobDriveById = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
-
 
 const addInterviewSchedule = async (req, res) => {
   try {
