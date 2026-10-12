@@ -1,18 +1,21 @@
 const mongoose = require("mongoose")
 const jobDriveSchema = new mongoose.Schema({
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
   companyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true },
   jobRole: { type: String, required: true },
   ctc: { type: String },
-  
+ 
   // Embedded Eligibility Rules
   eligibility: {
     minCgpa: { type: Number, default: 0 },
     maxBacklogs: { type: Number, default: 0 },
     allowedBranches: [{ type: String }] // Array of strings e.g., ["BTech CS", "MSc ICT"]
   },
-  
+
   deadline: { type: Date, required: true },
+ // Inside your existing JobDrive schema, add these two fields:
+  description: { type: String },
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user' }, // Links to the committee member
 
   // Embedded Schedules (Replaces the InterviewSchedules SQL table)
   interviewSchedules: [{

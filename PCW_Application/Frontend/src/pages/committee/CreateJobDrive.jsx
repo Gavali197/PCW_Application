@@ -10,7 +10,8 @@ const CreateJobDrive = () => {
     deadline: '',
     minCgpa: '',
     maxBacklogs: '',
-    branchesString: '' // We will split this into an array before sending
+    branchesString: '', 
+    description: '' // Added description field
   });
   const [message, setMessage] = useState({ type: '', text: '' });
 
@@ -39,6 +40,7 @@ const CreateJobDrive = () => {
       jobRole: formData.jobRole,
       ctc: formData.ctc,
       deadline: formData.deadline,
+      description: formData.description, // Added to payload
       eligibility: {
         minCgpa: Number(formData.minCgpa),
         maxBacklogs: Number(formData.maxBacklogs),
@@ -52,7 +54,7 @@ const CreateJobDrive = () => {
       setMessage({ type: 'success', text: 'Job Drive created successfully!' });
       // Reset form
       setFormData({
-        companyId: '', jobRole: '', ctc: '', deadline: '', minCgpa: '', maxBacklogs: '', branchesString: ''
+        companyId: '', jobRole: '', ctc: '', deadline: '', minCgpa: '', maxBacklogs: '', branchesString: '', description: ''
       });
     } catch (err) {
       setMessage({ type: 'error', text: err.response?.data?.message || 'Failed to create job drive.' });
@@ -85,7 +87,7 @@ const CreateJobDrive = () => {
             ))}
           </select>
           {companies.length === 0 && (
-            <small style={{ color: 'red' }}>You must add a company to the system first via Postman.</small>
+            <small style={{ color: 'red' }}>You must add a company to the system first.</small>
           )}
         </div>
 
@@ -121,6 +123,20 @@ const CreateJobDrive = () => {
             onChange={handleChange} 
             required 
             placeholder="e.g., BTech CS, MSc ICT, MCA" 
+          />
+        </div>
+
+        {/* NEW DESCRIPTION FIELD */}
+        <div className="form-group">
+          <label>Job Description & Additional Requirements</label>
+          <textarea 
+            name="description" 
+            value={formData.description} 
+            onChange={handleChange} 
+            required 
+            rows="5"
+            placeholder="Enter the detailed job description, required skills, and interview process..."
+            style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', resize: 'vertical' }}
           />
         </div>
 
