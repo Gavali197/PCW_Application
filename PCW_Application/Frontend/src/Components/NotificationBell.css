@@ -1,0 +1,117 @@
+.notification-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.bell-button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  padding: 5px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ef4444; /* Red */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.notification-dropdown {
+  position: absolute;
+  bottom: 45px; /* Pushes it up if placed at the bottom of a sidebar */
+  left: 0; /* Or right: 0 if placed in a top navbar */
+  width: 320px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dropdown-header h4 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dropdown-body {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f8fafc;
+}
+
+.notification-item.unread {
+  background-color: #eff6ff; /* Very faint blue */
+}
+
+.notif-content p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #475569;
+}
+
+.notif-content small {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.unread-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+}
+
+.no-alerts {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}/* Pushes it up if placed at the bottom of a sidebar */

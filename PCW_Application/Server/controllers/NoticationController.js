@@ -1,15 +1,12 @@
 const Notification = require('../models/Notification');
 const User = require('../models/User');
 
-// @desc    Get all notifications for the logged-in user
-// @route   GET /api/notifications
-// @access  Private (All Roles)
+
 const getMyNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({ userId: req.user._id })
-      .sort({ createdAt: -1 }); // Newest first
+      .sort({ createdAt: -1 }); 
 
-    // Calculate unread count for the frontend badge
     const unreadCount = notifications.filter(n => !n.isRead).length;
 
     res.json({
@@ -21,9 +18,7 @@ const getMyNotifications = async (req, res) => {
   }
 };
 
-// @desc    Mark a single notification as read
-// @route   PATCH /api/notifications/:id/read
-// @access  Private (All Roles)
+
 const markAsRead = async (req, res) => {
   try {
     const notification = await Notification.findOne({ 
@@ -44,9 +39,7 @@ const markAsRead = async (req, res) => {
   }
 };
 
-// @desc    Mark all notifications as read for the logged-in user
-// @route   PATCH /api/notifications/read-all
-// @access  Private (All Roles)
+
 const markAllAsRead = async (req, res) => {
   try {
     await Notification.updateMany(
@@ -60,9 +53,7 @@ const markAllAsRead = async (req, res) => {
   }
 };
 
-// @desc    Send a manual notification to a specific user
-// @route   POST /api/notifications
-// @access  Private (Committee / SuperAdmin)
+
 const sendNotification = async (req, res) => {
   try {
     const { targetUserId, title, message } = req.body;
