@@ -1,5 +1,6 @@
 import React from 'react';
 import './Sidebar.css'; 
+import NotificationBell from './NotificationBell';
 
 const Sidebar = ({ role, menuItems, activeTab, setActiveTab, user, onLogout }) => {
   return (
@@ -38,6 +39,7 @@ const Sidebar = ({ role, menuItems, activeTab, setActiveTab, user, onLogout }) =
             <p className="user-name">{user?.fullName || 'Complete Profile'}</p>
             <p className="user-email">{user?.email}</p>
           </div>
+          <NotificationBell />
         </div>
         
         <button className="logout-btn" onClick={onLogout}>

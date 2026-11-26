@@ -97,6 +97,8 @@
 }
 
 .user-info {
+  flex: 1;       /* Takes up remaining space */
+  min-width: 0;  /* Allows text-overflow: ellipsis to work properly */
   overflow: hidden;
 }
 

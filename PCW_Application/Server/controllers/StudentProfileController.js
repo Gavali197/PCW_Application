@@ -42,7 +42,7 @@ const upsertProfile = async (req, res) => {
 
     res.status(201).json(profile);
   } catch (error) {
-   
+
     if (error.code === 11000) {
       return res.status(400).json({ message: 'Enrollment Number already exists' });
     }
@@ -53,7 +53,7 @@ const upsertProfile = async (req, res) => {
 const getMyProfile = async (req, res) => {
   try {
     const profile = await StudentProfile.findOne({ userId: req.user._id })
-      .populate('userId', 'email isActive'); 
+      .populate('userId', 'email isActive');
 
     if (!profile) {
       return res.status(404).json({ message: 'Profile not found' });
@@ -68,7 +68,7 @@ const getMyProfile = async (req, res) => {
 
 const verifyProfile = async (req, res) => {
   try {
-    const { status } = req.body; 
+    const { status } = req.body;
     const profileId = req.params.id;
 
     if (!['Verified', 'Rejected'].includes(status)) {
@@ -88,6 +88,15 @@ const verifyProfile = async (req, res) => {
       performedBy: req.user._id,
       action: `${status} Profile for Enrollment: ${profile.enrollmentNo}`,
       targetId: profile._id
+    });
+
+    await Notification.create({
+      userId: profile.userId, // Send to the specific student
+      title: `Profile ${status}`,
+      message: status === 'Rejected'
+        ? 'Your profile was rejected. Please update your details.'
+        : 'Your profile has been verified! You can now apply for jobs.',
+      type: 'Profile'
     });
 
     res.json({
