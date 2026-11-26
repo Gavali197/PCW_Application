@@ -105,13 +105,3 @@
   padding: 20px;
   color: #64748b;
 }
-
-.notification-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 15px;
-  border-bottom: 1px solid #f1f5f9;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}/* Pushes it up if placed at the bottom of a sidebar */

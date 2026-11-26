@@ -16,6 +16,19 @@ const createJobDrive = async (req, res) => {
       description // ADDED: save the description to the database
     });
 
+// TRIGGER NOTIFICATION TO ALL STUDENTS
+  const allStudents = await User.find({ role: 'Student', isActive: true });
+  
+  const notifications = allStudents.map(student => ({
+    userId: student._id,
+    title: 'New Placement Drive',
+    message: `A new role for ${jobRole} has been posted! Check your Job Board.`,
+    type: 'Job'
+  }));
+
+  // Insert them all at once (highly efficient)
+  await Notification.insertMany(notifications);
+
     res.status(201).json(jobDrive);
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
