@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import api from '../api/axios'; // Adjust path based on your folder structure
+import api from '../API/axios'; // Adjust path based on your folder structure
 import './NotificationBell.css';
 
 const NotificationBell = () => {
